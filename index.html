@@ -1,1 +1,901 @@
+.widget-header {
+    background: var(--primary); color: #fff;
+    padding: 12px 16px; font-size: 12px; font-weight: 800; letter-spacing: 2px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .widget-header .accent { color: var(--accent); }
 
+  /* Popular */
+  .popular-list { padding: 8px 0; }
+  .popular-item {
+    display: grid; grid-template-columns: 32px 1fr;
+    align-items: start; gap: 10px; padding: 10px 16px;
+    border-bottom: 1px solid var(--gray-100); cursor: pointer;
+  }
+  .popular-item:last-child { border-bottom: none; }
+  .popular-item:hover { background: var(--gray-100); }
+  .popular-num { font-size: 20px; font-weight: 900; color: var(--gray-200); line-height: 1; }
+  .popular-num.top { color: var(--accent); }
+  .popular-title { font-size: 12px; font-weight: 600; color: var(--primary); line-height: 1.4; }
+  .popular-meta { font-size: 10px; color: var(--gray-400); margin-top: 3px; }
+
+  /* Weather widget */
+  .weather-widget { padding: 16px; }
+  .weather-main { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .weather-icon { font-size: 48px; }
+  .weather-temp { font-size: 36px; font-weight: 800; color: var(--primary); }
+  .weather-city { font-size: 14px; font-weight: 600; color: var(--gray-600); }
+  .weather-desc { font-size: 12px; color: var(--gray-400); }
+  .weather-details { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .weather-detail { text-align: center; }
+  .weather-detail-val { font-size: 13px; font-weight: 700; color: var(--primary); }
+  .weather-detail-key { font-size: 10px; color: var(--gray-400); }
+
+  /* Tags */
+  .tag-cloud { padding: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: var(--gray-100); color: var(--gray-600);
+    font-size: 11px; padding: 5px 10px; border-radius: 4px;
+    cursor: pointer; border: 1px solid var(--gray-200); transition: all 0.2s;
+  }
+  .tag:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  /* Social */
+  .social-counts { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .social-item {
+    border-radius: 6px; padding: 12px; text-align: center; cursor: pointer;
+  }
+  .social-item.fb { background: #1877F2; color: #fff; }
+  .social-item.tw { background: #000; color: #fff; }
+  .social-item.yt { background: #FF0000; color: #fff; }
+  .social-item.ig { background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); color: #fff; }
+  .social-count { font-size: 18px; font-weight: 900; }
+  .social-name { font-size: 10px; font-weight: 600; opacity: 0.85; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--primary); color: #fff; margin-top: 40px; }
+  .footer-top {
+    max-width: 1400px; margin: 0 auto; padding: 40px 24px;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+  }
+  .footer-brand .brand { font-family: 'Merriweather', serif; font-size: 24px; font-weight: 900; color: #fff; }
+  .footer-brand .brand span { color: var(--accent); }
+  .footer-brand p { font-size: 13px; color: var(--gray-400); line-height: 1.6; margin-top: 12px; }
+  .footer-title { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-links a { color: var(--gray-400); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid #30363D;
+    max-width: 1400px; margin: 0 auto; padding: 16px 24px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-bottom p { font-size: 12px; color: var(--gray-400); }
+
+  /* ── ADMIN MODAL ── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7); z-index: 9999;
+    align-items: flex-start; justify-content: center;
+    padding: 20px; overflow-y: auto;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: #fff; border-radius: 12px; width: 100%; max-width: 800px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.4); margin: auto;
+    overflow: hidden;
+  }
+  .modal-header {
+    background: var(--primary); padding: 20px 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid var(--accent);
+  }
+  .modal-title { color: #fff; font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+  .modal-title span { color: var(--accent); }
+  .modal-close {
+    background: none; border: none; color: var(--gray-400);
+    font-size: 24px; cursor: pointer; line-height: 1;
+  }
+  .modal-close:hover { color: #fff; }
+  .modal-body { padding: 24px; }
+  .modal-tabs { display: flex; gap: 4px; margin-bottom: 24px; background: var(--gray-100); padding: 4px; border-radius: 8px; }
+  .modal-tab {
+    flex: 1; padding: 10px; text-align: center; font-size: 13px; font-weight: 600;
+    border-radius: 6px; cursor: pointer; color: var(--gray-600); border: none; background: none;
+    transition: all 0.2s;
+  }
+  .modal-tab.active { background: var(--accent); color: #fff; }
+  .form-group { margin-bottom: 16px; }
+  .form-label { display: block; font-size: 12px; font-weight: 700; color: var(--gray-600); margin-bottom: 6px; letter-spacing: 0.5px; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; padding: 10px 12px; border: 1.5px solid var(--gray-200);
+    border-radius: 6px; font-size: 13px; font-family: inherit;
+    color: var(--primary); background: #fff; outline: none; transition: border-color 0.2s;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--accent); }
+  .form-textarea { min-height: 120px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .toggle-group { display: flex; align-items: center; gap: 10px; }
+  .toggle {
+    width: 42px; height: 22px; background: var(--gray-200); border-radius: 11px;
+    position: relative; cursor: pointer; transition: background 0.2s; flex-shrink: 0;
+  }
+  .toggle.on { background: var(--accent); }
+  .toggle::after {
+    content: ''; position: absolute; top: 2px; left: 2px;
+    width: 18px; height: 18px; background: #fff; border-radius: 50%;
+    transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle.on::after { transform: translateX(20px); }
+  .toggle-label { font-size: 13px; color: var(--gray-600); }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none;
+    padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 700;
+    cursor: pointer; width: 100%; transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent-dark); }
+  .btn-secondary {
+    background: var(--gray-100); color: var(--gray-600); border: 1.5px solid var(--gray-200);
+    padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .btn-secondary:hover { background: var(--gray-200); }
+  .btn-row { display: flex; gap: 12px; margin-top: 8px; }
+  .btn-row .btn-primary { flex: 1; }
+
+  /* ── NEWS LIST ADMIN ── */
+  .admin-news-list { display: flex; flex-direction: column; gap: 10px; }
+  .admin-news-item {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--gray-100); border-radius: 8px; padding: 12px;
+  }
+  .admin-news-item img { width: 60px; height: 45px; object-fit: cover; border-radius: 4px; }
+  .admin-news-info { flex: 1; }
+  .admin-news-title { font-size: 13px; font-weight: 600; color: var(--primary); }
+  .admin-news-meta { font-size: 11px; color: var(--gray-400); margin-top: 3px; }
+  .admin-news-actions { display: flex; gap: 6px; }
+  .btn-edit, .btn-delete {
+    padding: 5px 10px; font-size: 11px; font-weight: 600;
+    border: none; border-radius: 4px; cursor: pointer;
+  }
+  .btn-edit { background: var(--blue); color: #fff; }
+  .btn-delete { background: var(--red); color: #fff; }
+  .cat-badge {
+    display: inline-block; padding: 2px 8px;
+    border-radius: 3px; font-size: 10px; font-weight: 700;
+    background: var(--accent); color: #fff; margin-right: 4px;
+  }
+  .breaking-badge {
+    display: inline-block; padding: 2px 8px;
+    border-radius: 3px; font-size: 10px; font-weight: 700;
+    background: var(--red); color: #fff; margin-right: 4px;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 99999;
+    background: var(--green); color: #fff; padding: 14px 20px;
+    border-radius: 8px; font-size: 14px; font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.3s; pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .sidebar { display: grid; grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-side { display: none; }
+    .news-grid { grid-template-columns: 1fr 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 24px; }
+    .form-row, .form-row-3 { grid-template-columns: 1fr; }
+    .sidebar { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 540px) {
+    .news-grid { grid-template-columns: 1fr; }
+    .header-top { padding: 0 16px; }
+    .search-box { display: none; }
+  }
+
+  /* ── IMAGE PLACEHOLDERS ── */
+  .img-ph {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 32px; color: rgba(255,255,255,0.4);
+  }
+</style>
+</head>
+<body>
+
+<!-- BREAKING NEWS BAND -->
+<div class="breaking-band" id="breakingBand">
+  <div class="breaking-label">⚡ SON DAKİKA</div>
+  <div class="breaking-ticker">
+    <div class="breaking-ticker-inner" id="tickerInner">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <a class="logo-area" href="#">
+      <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="22" fill="#E8801A" opacity="0.15"/>
+        <!-- Shutter blades simplified -->
+        <path d="M24 4 L30 14 L24 24 L18 14Z" fill="#E8801A"/>
+        <path d="M42 14 L38 25 L28 22 L32 11Z" fill="#E8801A" opacity="0.85"/>
+        <path d="M42 34 L30 34 L26 24 L38 20Z" fill="#E8801A" opacity="0.7"/>
+        <path d="M24 44 L18 34 L24 24 L30 34Z" fill="#E8801A" opacity="0.85"/>
+        <path d="M6 34 L10 23 L20 26 L16 37Z" fill="#E8801A" opacity="0.7"/>
+        <path d="M6 14 L18 14 L22 24 L10 28Z" fill="#E8801A" opacity="0.55"/>
+        <circle cx="24" cy="24" r="7" fill="#0D1117" opacity="0.6"/>
+      </svg>
+      <div class="logo-text">
+        <div class="brand">ODAK<span>23</span></div>
+        <div class="tagline">Haber & Televizyon</div>
+      </div>
+    </a>
+    <div class="header-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Haber ara...">
+        <button>🔍</button>
+      </div>
+      <button class="live-btn" onclick="alert('Canlı yayın başlıyor...')">
+        <span class="live-dot"></span> CANLI
+      </button>
+      <button class="admin-btn" onclick="openAdmin()">+ Haber Ekle</button>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-item active" onclick="filterCat('all')">Tümü</a>
+    <a class="nav-item" onclick="filterCat('gundem')">Gündem <span class="badge">12</span></a>
+    <a class="nav-item" onclick="filterCat('siyaset')">Siyaset</a>
+    <a class="nav-item" onclick="filterCat('ekonomi')">Ekonomi</a>
+    <a class="nav-item" onclick="filterCat('dunya')">Dünya</a>
+    <a class="nav-item" onclick="filterCat('spor')">Spor</a>
+    <a class="nav-item" onclick="filterCat('kultur')">Kültür & Sanat</a>
+    <a class="nav-item" onclick="filterCat('teknoloji')">Teknoloji</a>
+    <a class="nav-item" onclick="filterCat('saglik')">Sağlık</a>
+    <a class="nav-item" onclick="filterCat('yerel')">Yerel</a>
+    <a class="nav-item" onclick="filterCat('video')">📹 Video</a>
+    <div class="date-display" id="dateDisplay"></div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero-section">
+    <div class="hero-grid" id="heroSection">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <!-- CAT STRIP -->
+  <div class="cat-strip">
+    <div class="cat-pill active" onclick="filterCat('all')"><span class="dot" style="background:#E8801A"></span>Tümü</div>
+    <div class="cat-pill" onclick="filterCat('gundem')"><span class="dot" style="background:#E53E3E"></span>Gündem</div>
+    <div class="cat-pill" onclick="filterCat('ekonomi')"><span class="dot" style="background:#38A169"></span>Ekonomi</div>
+    <div class="cat-pill" onclick="filterCat('siyaset')"><span class="dot" style="background:#3182CE"></span>Siyaset</div>
+    <div class="cat-pill" onclick="filterCat('spor')"><span class="dot" style="background:#D69E2E"></span>Spor</div>
+    <div class="cat-pill" onclick="filterCat('dunya')"><span class="dot" style="background:#805AD5"></span>Dünya</div>
+    <div class="cat-pill" onclick="filterCat('teknoloji')"><span class="dot" style="background:#00B5D8"></span>Teknoloji</div>
+    <div class="cat-pill" onclick="filterCat('saglik')"><span class="dot" style="background:#F6AD55"></span>Sağlık</div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="main-grid">
+    <div class="content-area">
+
+      <!-- SON DAKİKA -->
+      <div id="breakingSection" style="margin-bottom:32px;">
+        <div class="section-header">
+          <div class="section-title" style="color:var(--red)">
+            <span style="font-size:13px">⚡</span> Son Dakika
+          </div>
+          <a class="see-all">Tümü →</a>
+        </div>
+        <div class="news-grid" id="breakingGrid"></div>
+      </div>
+
+      <!-- MANŞET HABERLERİ -->
+      <div id="featuredSection" style="margin-bottom:32px;">
+        <div class="section-header">
+          <div class="section-title">Manşet Haberler</div>
+          <a class="see-all">Tümü →</a>
+        </div>
+        <div class="news-grid" id="featuredGrid"></div>
+      </div>
+
+      <!-- GÜNDEM -->
+      <div id="mainSection">
+        <div class="section-header">
+          <div class="section-title">Tüm Haberler</div>
+          <a class="see-all">Tümü →</a>
+        </div>
+        <div class="news-list" id="allNewsList"></div>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- Popüler -->
+      <div class="sidebar-widget">
+        <div class="widget-header">🔥 <span class="accent">POPÜLER</span> HABERLER</div>
+        <div class="popular-list" id="popularList"></div>
+      </div>
+
+      <!-- Hava Durumu -->
+      <div class="sidebar-widget">
+        <div class="widget-header">🌤 HAVA DURUMU</div>
+        <div class="weather-widget">
+          <div class="weather-main">
+            <div class="weather-icon">⛅</div>
+            <div>
+              <div class="weather-temp">23°C</div>
+              <div class="weather-city">Elazığ</div>
+              <div class="weather-desc">Parçalı Bulutlu</div>
+            </div>
+          </div>
+          <div class="weather-details">
+            <div class="weather-detail"><div class="weather-detail-val">💧 55%</div><div class="weather-detail-key">Nem</div></div>
+            <div class="weather-detail"><div class="weather-detail-val">💨 12km/s</div><div class="weather-detail-key">Rüzgar</div></div>
+            <div class="weather-detail"><div class="weather-detail-val">☀️ 29°</div><div class="weather-detail-key">Hissedilen</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sosyal Medya -->
+      <div class="sidebar-widget">
+        <div class="widget-header">📱 SOSYAl MEDYA</div>
+        <div class="social-counts">
+          <div class="social-item fb" onclick="alert('Facebook sayfamızı takip edin!')">
+            <div class="social-count">48.2K</div>
+            <div class="social-name">👍 Facebook</div>
+          </div>
+          <div class="social-item tw" onclick="alert('X\'te bizi takip edin!')">
+            <div class="social-count">31.5K</div>
+            <div class="social-name">𝕏 Twitter</div>
+          </div>
+          <div class="social-item yt" onclick="alert('YouTube kanalımıza abone olun!')">
+            <div class="social-count">12.8K</div>
+            <div class="social-name">▶ YouTube</div>
+          </div>
+          <div class="social-item ig" onclick="alert('Instagram\'da takip edin!')">
+            <div class="social-count">24.1K</div>
+            <div class="social-name">📸 Instagram</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Etiketler -->
+      <div class="sidebar-widget">
+        <div class="widget-header">🏷 ETİKETLER</div>
+        <div class="tag-cloud" id="tagCloud"></div>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="brand">ODAK<span>23</span> TV</div>
+      <p>Elazığ ve çevresinin güvenilir haber kaynağı. Doğru, hızlı ve tarafsız habercilik anlayışıyla sizinle.</p>
+    </div>
+    <div>
+      <div class="footer-title">HIZLI ERİŞİM</div>
+      <ul class="footer-links">
+        <li><a href="#">Gündem</a></li>
+        <li><a href="#">Siyaset</a></li>
+        <li><a href="#">Ekonomi</a></li>
+        <li><a href="#">Spor</a></li>
+        <li><a href="#">Dünya</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-title">KURUMSAL</div>
+      <ul class="footer-links">
+        <li><a href="#">Hakkımızda</a></li>
+        <li><a href="#">Künye</a></li>
+        <li><a href="#">İletişim</a></li>
+        <li><a href="#">Reklam</a></li>
+        <li><a href="#">Kariyer</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-title">POLİTİKALAR</div>
+      <ul class="footer-links">
+        <li><a href="#">Gizlilik Politikası</a></li>
+        <li><a href="#">Çerez Politikası</a></li>
+        <li><a href="#">KVKK</a></li>
+        <li><a href="#">Düzeltme Talebi</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Odak23 TV. Tüm hakları saklıdır.</p>
+    <p>Yayın İlkeleri | Basın Kartı No: XXXXX</p>
+  </div>
+</footer>
+
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">⚡ ODAK<span>23</span> — Haber Yönetimi</div>
+      <button class="modal-close" onclick="closeAdmin()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab('add')">+ Yeni Haber</button>
+        <button class="modal-tab" onclick="switchTab('list')">📋 Haberler</button>
+        <button class="modal-tab" onclick="switchTab('breaking')">⚡ Son Dakika</button>
+        <button class="modal-tab" onclick="switchTab('settings')">⚙ Ayarlar</button>
+      </div>
+
+      <!-- ADD TAB -->
+      <div id="tab-add">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">KATEGORİ *</label>
+            <select class="form-select" id="newsCat">
+              <option value="gundem">Gündem</option>
+              <option value="siyaset">Siyaset</option>
+              <option value="ekonomi">Ekonomi</option>
+              <option value="dunya">Dünya</option>
+              <option value="spor">Spor</option>
+              <option value="kultur">Kültür & Sanat</option>
+              <option value="teknoloji">Teknoloji</option>
+              <option value="saglik">Sağlık</option>
+              <option value="yerel">Yerel</option>
+              <option value="video">Video</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">YAZAR</label>
+            <input class="form-input" id="newsAuthor" placeholder="Haber Merkezi">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">BAŞLIK *</label>
+          <input class="form-input" id="newsTitle" placeholder="Haber başlığını girin...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">ÖN YAZI (Spot)</label>
+          <input class="form-input" id="newsExcerpt" placeholder="Kısa özet / spot metni...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">HABER İÇERİĞİ</label>
+          <textarea class="form-textarea" id="newsContent" placeholder="Haber içeriğini buraya yazın..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">GÖRSEL URL</label>
+            <input class="form-input" id="newsImg" placeholder="https://...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">ETİKETLER</label>
+            <input class="form-input" id="newsTags" placeholder="etiket1, etiket2, etiket3">
+          </div>
+        </div>
+        <div class="form-row-3" style="margin-bottom:16px;">
+          <div class="toggle-group">
+            <div class="toggle" id="toggleBreaking" onclick="this.classList.toggle('on')"></div>
+            <span class="toggle-label">⚡ Son Dakika</span>
+          </div>
+          <div class="toggle-group">
+            <div class="toggle" id="toggleFeatured" onclick="this.classList.toggle('on')"></div>
+            <span class="toggle-label">⭐ Manşet</span>
+          </div>
+          <div class="toggle-group">
+            <div class="toggle on" id="togglePublish" onclick="this.classList.toggle('on')"></div>
+            <span class="toggle-label">✅ Yayınla</span>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn-secondary" onclick="closeAdmin()">İptal</button>
+          <button class="btn-primary" onclick="addNews()">🚀 Haberi Yayınla</button>
+        </div>
+      </div>
+
+      <!-- LIST TAB -->
+      <div id="tab-list" style="display:none;">
+        <div class="admin-news-list" id="adminNewsList"></div>
+      </div>
+
+      <!-- BREAKING TAB -->
+      <div id="tab-breaking" style="display:none;">
+        <div class="form-group">
+          <label class="form-label">YENİ SON DAKİKA BAŞLIĞI</label>
+          <input class="form-input" id="breakingInput" placeholder="Son dakika haberini girin...">
+        </div>
+        <div class="btn-row">
+          <button class="btn-primary" onclick="addBreakingNews()">⚡ Banda Ekle</button>
+        </div>
+        <div style="margin-top:20px;">
+          <div class="form-label" style="margin-bottom:10px;">MEVCUT SON DAKİKA BANDİ</div>
+          <div id="breakingList" style="display:flex;flex-direction:column;gap:8px;"></div>
+        </div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div id="tab-settings" style="display:none;">
+        <div class="form-group">
+          <label class="form-label">SITE BAŞLIĞI</label>
+          <input class="form-input" value="Odak23 TV">
+        </div>
+        <div class="form-group">
+          <label class="form-label">SLOGAN</label>
+          <input class="form-input" value="Haber & Televizyon">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">İLETİŞİM E-POSTA</label>
+            <input class="form-input" placeholder="info@odak23.tv">
+          </div>
+          <div class="form-group">
+            <label class="form-label">TELEFON</label>
+            <input class="form-input" placeholder="+90 000 000 00 00">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">HABER BANDINDA HABER SAYISI</label>
+          <select class="form-select">
+            <option>5</option><option selected>10</option><option>15</option><option>20</option>
+          </select>
+        </div>
+        <div class="toggle-group" style="margin-bottom:16px;">
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          <span class="toggle-label">Son dakika bandını göster</span>
+        </div>
+        <div class="toggle-group" style="margin-bottom:24px;">
+          <div class="toggle on" onclick="this.classList.toggle('on')"></div>
+          <span class="toggle-label">Hava durumu widgetı aktif</span>
+        </div>
+        <button class="btn-primary" onclick="showToast('Ayarlar kaydedildi ✓')">💾 Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── DATA STORE ──
+const CAT_COLORS = {
+  gundem:'#E53E3E', siyaset:'#3182CE', ekonomi:'#38A169',
+  dunya:'#805AD5', spor:'#D69E2E', kultur:'#DD6B20',
+  teknoloji:'#00B5D8', saglik:'#F6AD55', yerel:'#E8801A', video:'#718096'
+};
+const CAT_LABELS = {
+  gundem:'Gündem', siyaset:'Siyaset', ekonomi:'Ekonomi',
+  dunya:'Dünya', spor:'Spor', kultur:'Kültür', teknoloji:'Teknoloji',
+  saglik:'Sağlık', yerel:'Yerel', video:'Video'
+};
+
+// Placeholder gradients per category
+const CAT_GRAD = {
+  gundem:'linear-gradient(135deg,#E53E3E,#9B2C2C)',
+  siyaset:'linear-gradient(135deg,#3182CE,#2C5282)',
+  ekonomi:'linear-gradient(135deg,#38A169,#276749)',
+  dunya:'linear-gradient(135deg,#805AD5,#553C9A)',
+  spor:'linear-gradient(135deg,#D69E2E,#975A16)',
+  kultur:'linear-gradient(135deg,#DD6B20,#9C4221)',
+  teknoloji:'linear-gradient(135deg,#00B5D8,#086F83)',
+  saglik:'linear-gradient(135deg,#F6AD55,#C05621)',
+  yerel:'linear-gradient(135deg,#E8801A,#C4660E)',
+  video:'linear-gradient(135deg,#718096,#2D3748)',
+};
+
+const EMOJIS = {
+  gundem:'📰',siyaset:'🏛',ekonomi:'📈',dunya:'🌍',
+  spor:'⚽',kultur:'🎭',teknoloji:'💻',saglik:'🏥',yerel:'📍',video:'📹'
+};
+
+let newsDB = [
+  { id:1, title:'Türkiye ekonomisinde büyüme rakamları açıklandı: Beklentilerin üzerinde sonuç', excerpt:'TÜİK verilerine göre geçen çeyrek büyüme oranı yüzde 4,2 olarak gerçekleşti.', cat:'ekonomi', author:'Ekonomi Masası', time:'5 dk önce', views:3240, breaking:false, featured:true },
+  { id:2, title:'Meclis\'te kritik oylamanın sonucu belli oldu, tüm gözler Cumhurbaşkanlığında', excerpt:'Yasa tasarısı 298 oyla kabul edildi. Muhalefet kararı sert bir dille eleştirdi.', cat:'siyaset', author:'Siyaset Masası', time:'12 dk önce', views:5821, breaking:true, featured:true },
+  { id:3, title:'Süper Lig\'de şampiyonluk yarışı kızışıyor: Son hafta belirleyici olacak', excerpt:'Üç takım arasındaki puan farkı tek haneye geriledi. Bu hafta kritik derbiler var.', cat:'spor', author:'Spor Masası', time:'28 dk önce', views:8910, breaking:false, featured:true },
+  { id:4, title:'Yapay zeka düzenlemeleri için yeni yasa taslağı hazırlandı', excerpt:'Dijital Dönüşüm Ofisi, yapay zeka kullanımına yönelik kısıtlama ve standartları açıkladı.', cat:'teknoloji', author:'Teknoloji Masası', time:'45 dk önce', views:2150, breaking:false, featured:false },
+  { id:5, title:'Orta Doğu\'daki gelişmeler: Ateşkes görüşmeleri sürecinde kritik adım', excerpt:'Bölgedeki tansiyon yüksek olmaya devam ederken diplomatik temaslarda yoğunluk arttı.', cat:'dunya', author:'Dış Haberler', time:'1 sa önce', views:6400, breaking:true, featured:false },
+  { id:6, title:'Sağlık Bakanlığı\'ndan aşı takvimi güncellemesi: Yeni uygulama başlıyor', excerpt:'Çocukluk çağı aşıları takviminde kapsamlı değişiklikler yapıldı. Aileler bilgilendirilecek.', cat:'saglik', author:'Sağlık Masası', time:'1.5 sa önce', views:1780, breaking:false, featured:false },
+  { id:7, title:'Elazığ\'da yeni sanayi bölgesi projesi onaylandı: 500 istihdam hedefi', excerpt:'Belediye meclisinde görüşülen proje oy birliğiyle kabul edildi. İlk etap yılsonunda başlıyor.', cat:'yerel', author:'Yerel Muhabir', time:'2 sa önce', views:4320, breaking:false, featured:false },
+  { id:8, title:'Uluslararası film festivalinde Türk sineması büyük ödülü kaptı', excerpt:'Yönetmen Cem Arslan\'ın filmi Venedik\'te altın aslan ödülüne layık görüldü.', cat:'kultur', author:'Kültür Masası', time:'3 sa önce', views:3670, breaking:false, featured:false },
+];
+
+let breakingItems = [
+  'Merkez Bankası faiz kararını açıkladı: Yüzde 50\'de sabit kaldı',
+  'NATO Genel Sekreteri Ankara\'ya geliyor — Türkiye\'den kritik talep bekleniyor',
+  'Elazığ\'da 3.8 büyüklüğünde deprem meydana geldi, hasar raporu bekleniyor',
+  'Dolar/TL bu sabah 32,45\'i gördü — Piyasalar sert dalgalanmayla açıldı',
+  'Milli takım aday kadrosu belli oldu: Sürpriz isimler listede!'
+];
+
+const tags = ['Elazığ','Türkiye','Siyaset','Ekonomi','Deprem','Seçim','Spor','Dolar','NATO','Avrupa','TBMM','Cumhurbaşkanı','İklim','Teknoloji','Sağlık','Eğitim'];
+
+let currentFilter = 'all';
+
+// ── INIT ──
+function init() {
+  updateDate();
+  renderTicker();
+  renderHero();
+  renderBreaking();
+  renderFeatured();
+  renderAllNews();
+  renderPopular();
+  renderTags();
+}
+
+function updateDate() {
+  const now = new Date();
+  const opts = { weekday:'long', year:'numeric', month:'long', day:'numeric', hour:'2-digit', minute:'2-digit' };
+  document.getElementById('dateDisplay').textContent = now.toLocaleDateString('tr-TR', opts);
+}
+
+function renderTicker() {
+  const inner = document.getElementById('tickerInner');
+  inner.innerHTML = breakingItems.map(t => `<span onclick="alert('${t}')">• ${t}</span>`).join('');
+}
+
+function cardBg(news) {
+  return `<div class="img-ph" style="background:${CAT_GRAD[news.cat] || '#333'}">${EMOJIS[news.cat] || '📰'}</div>`;
+}
+
+function renderHero() {
+  const featured = newsDB.filter(n => n.featured).slice(0,3);
+  if (!featured.length) { document.getElementById('heroSection').innerHTML = ''; return; }
+  const main = featured[0];
+  const sides = featured.slice(1,3);
+  document.getElementById('heroSection').innerHTML = `
+    <div class="hero-main" onclick="alert('${main.title}')">
+      <div style="width:100%;height:100%;${CAT_GRAD[main.cat] ? 'background:'+CAT_GRAD[main.cat] : ''}; display:flex;align-items:center;justify-content:center;font-size:80px">${EMOJIS[main.cat]}</div>
+      <div class="hero-overlay">
+        <span class="hero-cat">${CAT_LABELS[main.cat]}</span>
+        <div class="hero-title">${main.title}</div>
+        <div class="hero-meta">${main.author} · ${main.time}</div>
+      </div>
+    </div>
+    <div class="hero-side">
+      ${sides.map(n=>`
+        <div class="hero-side-item" onclick="alert('${n.title}')">
+          <div style="width:100%;height:100%;background:${CAT_GRAD[n.cat]};display:flex;align-items:center;justify-content:center;font-size:48px">${EMOJIS[n.cat]}</div>
+          <div class="hero-overlay">
+            <span class="hero-cat">${CAT_LABELS[n.cat]}</span>
+            <div class="hero-title">${n.title}</div>
+            <div class="hero-meta">${n.time}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function newsCardHTML(n) {
+  const badge = n.breaking
+    ? `<span class="news-card-breaking">⚡ SON DAKİKA</span>`
+    : `<span class="news-card-cat">${CAT_LABELS[n.cat]}</span>`;
+  return `
+    <div class="news-card" onclick="alert('${n.title}')">
+      <div class="news-card-img" style="background:${CAT_GRAD[n.cat]};display:flex;align-items:center;justify-content:center;">
+        ${badge}
+        <span style="font-size:48px">${EMOJIS[n.cat]}</span>
+      </div>
+      <div class="news-card-body">
+        <div class="news-card-title">${n.title}</div>
+        <div class="news-card-excerpt">${n.excerpt}</div>
+        <div class="news-card-footer">
+          <span class="news-card-meta">✍ ${n.author} · 🕐 ${n.time}</span>
+          <span class="news-card-views">👁 ${n.views.toLocaleString('tr-TR')}</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderBreaking() {
+  const b = newsDB.filter(n => n.breaking).slice(0,3);
+  document.getElementById('breakingSection').style.display = b.length ? '' : 'none';
+  document.getElementById('breakingGrid').innerHTML = b.map(newsCardHTML).join('');
+}
+
+function renderFeatured() {
+  const f = newsDB.filter(n => n.featured && !n.breaking).slice(0,3);
+  document.getElementById('featuredSection').style.display = f.length ? '' : 'none';
+  document.getElementById('featuredGrid').innerHTML = f.map(newsCardHTML).join('');
+}
+
+function renderAllNews() {
+  let list = currentFilter === 'all' ? newsDB : newsDB.filter(n => n.cat === currentFilter);
+  document.getElementById('allNewsList').innerHTML = list.map(n => `
+    <div class="news-list-item" onclick="alert('${n.title}')">
+      <div class="news-list-img" style="background:${CAT_GRAD[n.cat]};display:flex;align-items:center;justify-content:center;font-size:32px">${EMOJIS[n.cat]}</div>
+      <div class="news-list-body">
+        <div>
+          ${n.breaking ? '<span class="breaking-badge">⚡ SON DAKİKA</span>' : ''}
+          <span class="cat-badge" style="background:${CAT_COLORS[n.cat]}">${CAT_LABELS[n.cat]}</span>
+        </div>
+        <div class="news-list-title">${n.title}</div>
+        <div class="news-list-meta">✍ ${n.author} · 🕐 ${n.time} · 👁 ${n.views.toLocaleString('tr-TR')}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderPopular() {
+  const sorted = [...newsDB].sort((a,b) => b.views - a.views).slice(0,5);
+  document.getElementById('popularList').innerHTML = sorted.map((n,i) => `
+    <div class="popular-item" onclick="alert('${n.title}')">
+      <div class="popular-num ${i===0?'top':''}">${String(i+1).padStart(2,'0')}</div>
+      <div>
+        <div class="popular-title">${n.title}</div>
+        <div class="popular-meta">👁 ${n.views.toLocaleString('tr-TR')} · ${n.time}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTags() {
+  document.getElementById('tagCloud').innerHTML = tags.map(t =>
+    `<span class="tag" onclick="alert('${t} haberleri')">#${t}</span>`
+  ).join('');
+}
+
+// ── FILTER ──
+function filterCat(cat) {
+  currentFilter = cat;
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.cat-pill').forEach(el => el.classList.remove('active'));
+  renderAllNews();
+}
+
+// ── ADMIN ──
+function openAdmin() {
+  document.getElementById('adminModal').classList.add('open');
+  switchTab('add');
+}
+function closeAdmin() {
+  document.getElementById('adminModal').classList.remove('open');
+}
+document.getElementById('adminModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAdmin();
+});
+
+function switchTab(name) {
+  ['add','list','breaking','settings'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = t===name ? '' : 'none';
+  });
+  document.querySelectorAll('.modal-tab').forEach((el,i) => {
+    el.classList.toggle('active', ['add','list','breaking','settings'][i]===name);
+  });
+  if (name === 'list') renderAdminList();
+  if (name === 'breaking') renderBreakingList();
+}
+
+function addNews() {
+  const title = document.getElementById('newsTitle').value.trim();
+  if (!title) { showToast('Lütfen başlık girin! ⚠️', 'error'); return; }
+  const newNews = {
+    id: Date.now(),
+    title,
+    excerpt: document.getElementById('newsExcerpt').value.trim() || 'Haberin detayları için tıklayın.',
+    cat: document.getElementById('newsCat').value,
+    author: document.getElementById('newsAuthor').value.trim() || 'Haber Merkezi',
+    time: 'Az önce',
+    views: Math.floor(Math.random()*500)+50,
+    breaking: document.getElementById('toggleBreaking').classList.contains('on'),
+    featured: document.getElementById('toggleFeatured').classList.contains('on'),
+  };
+  const newTags = document.getElementById('newsTags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  newTags.forEach(t => { if (!tags.includes(t)) tags.push(t); });
+  newsDB.unshift(newNews);
+  // reset form
+  ['newsTitle','newsExcerpt','newsContent','newsImg','newsAuthor','newsTags'].forEach(id => document.getElementById(id).value='');
+  ['toggleBreaking','toggleFeatured'].forEach(id => document.getElementById(id).classList.remove('on'));
+  document.getElementById('togglePublish').classList.add('on');
+  renderAll();
+  closeAdmin();
+  showToast('Haber başarıyla yayınlandı! ✓');
+}
+
+function addBreakingNews() {
+  const val = document.getElementById('breakingInput').value.trim();
+  if (!val) return;
+  breakingItems.unshift(val);
+  document.getElementById('breakingInput').value = '';
+  renderTicker();
+  renderBreakingList();
+  showToast('Son dakika bandına eklendi ⚡');
+}
+
+function renderAdminList() {
+  document.getElementById('adminNewsList').innerHTML = newsDB.map(n => `
+    <div class="admin-news-item">
+      <div style="width:60px;height:45px;background:${CAT_GRAD[n.cat]};border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${EMOJIS[n.cat]}</div>
+      <div class="admin-news-info">
+        <div class="admin-news-title">${n.title}</div>
+        <div class="admin-news-meta">
+          <span class="cat-badge" style="background:${CAT_COLORS[n.cat]}">${CAT_LABELS[n.cat]}</span>
+          ${n.breaking ? '<span class="breaking-badge">⚡</span>' : ''}
+          ${n.featured ? '<span class="cat-badge" style="background:#805AD5">⭐ Manşet</span>' : ''}
+          ${n.author} · ${n.time} · 👁 ${n.views.toLocaleString('tr-TR')}
+        </div>
+      </div>
+      <div class="admin-news-actions">
+        <button class="btn-edit" onclick="toggleBreakingNews(${n.id})">${n.breaking ? '❌ Son Dakika' : '⚡ Son Dakika'}</button>
+        <button class="btn-delete" onclick="deleteNews(${n.id})">🗑 Sil</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderBreakingList() {
+  document.getElementById('breakingList').innerHTML = breakingItems.map((t,i) => `
+    <div style="display:flex;align-items:center;gap:8px;background:var(--gray-100);padding:10px;border-radius:6px;">
+      <span style="font-size:13px;flex:1;">${t}</span>
+      <button class="btn-delete" style="padding:4px 10px;font-size:11px;" onclick="removeBreaking(${i})">✕ Kaldır</button>
+    </div>
+  `).join('') || '<div style="color:var(--gray-400);font-size:13px;">Henüz son dakika haberi yok.</div>';
+}
+
+function removeBreaking(i) {
+  breakingItems.splice(i,1);
+  renderTicker();
+  renderBreakingList();
+  showToast('Banddan kaldırıldı');
+}
+
+function toggleBreakingNews(id) {
+  const n = newsDB.find(x => x.id === id);
+  if (n) { n.breaking = !n.breaking; renderAll(); renderAdminList(); showToast(`Son dakika ${n.breaking ? 'işaretlendi' : 'kaldırıldı'}`); }
+}
+
+function deleteNews(id) {
+  if (!confirm('Bu haberi silmek istediğinizden emin misiniz?')) return;
+  newsDB = newsDB.filter(n => n.id !== id);
+  renderAll();
+  renderAdminList();
+  showToast('Haber silindi');
+}
+
+function renderAll() {
+  renderHero();
+  renderBreaking();
+  renderFeatured();
+  renderAllNews();
+  renderPopular();
+  renderTags();
+}
+
+// ── TOAST ──
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = type === 'error' ? 'var(--red)' : 'var(--green)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── INIT ──
+init();
+setInterval(updateDate, 60000);
+</script>
+</body>
+</html>
